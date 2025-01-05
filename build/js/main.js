@@ -70,4 +70,83 @@ console.log(matches);
 - If the `g` flag is not used, `text.match(regex)` will return only the first match or `null` if there’s no match.
 - In TypeScript, you get type safety, so the return type of `match` is `(string | null)[]`, and you might want to check for `null` to avoid runtime errors.
 
-*/ 
+*/
+/////////////////////////////Arrays*Tuple///////////////////////////////////////////////////
+let stringArr = ["one", "two", "three"];
+let guitars = ["Strat", "Les Paul", 5150];
+let mixedData = [true, "EVH", 5125];
+stringArr[0] = 'John';
+// stringArr.push(42); //not assignable
+guitars[0] = 1984;
+guitars.unshift("Jim");
+// stringArr = guitars  //This is not assignable
+guitars = stringArr; //This is assignable
+let test = [];
+let bands = []; //Assign array in ts
+bands.push('Van Halen');
+//Tuple
+let myTuple = ["Dave", 42, true];
+let mixed = ['John', 1, false];
+mixed = myTuple;
+// myTuple = mixed //It giving error because it is possible that mixed don't have three element
+myTuple[1] = 42; //This is the only index where we put number
+//Object
+let myObj;
+myObj = []; //This is possible because array has return type object
+console.log(typeof myObj);
+myObj = bands;
+myObj = {};
+const exampleObj = {
+    prop1: "Dave",
+    prop2: true
+};
+// exampleObj.prop2 = "John" //This is not possible as it type is boolean
+exampleObj.prop2 = false;
+let evh = {
+    name: "Eddie",
+    // active:false, if we remove that we get an error as we have to define all the properties
+    albums: [1984, 5150, "OU812"]
+};
+console.log(evh);
+// let jp = {
+//   name:"Jimmy",
+//   // active:true,
+//   albums:["I","II","IV"]
+// }
+// evh = jp //both have not the same type
+let jp = {
+    // name:"Jimmy",
+    active: true,
+    albums: ["I", "II", "IV"]
+};
+let jimmy = {
+    name: "Jimmy",
+    albums: ["I", "II", "IV"]
+};
+// evh = jimmy //now both are same
+//Function
+const greetGuitarist = (guitarist) => {
+    return `Hello ${guitarist.name}!`;
+};
+//if we use  ? on name some people may not give name so the return type is undefined for that we use 
+const greetGuitarist1 = (guitarist) => {
+    var _a;
+    if (guitarist.name) {
+        return `Hello ${(_a = guitarist.name) === null || _a === void 0 ? void 0 : _a.toUpperCase()}!`;
+    }
+    return 'Hello!!';
+};
+console.log(greetGuitarist(evh));
+console.log(greetGuitarist1(jp));
+//Enums 
+//Unlike most TypeScript features Enums are not a type-level addition to JAvascript but Something 
+// added to the language and runtime
+var Grade;
+(function (Grade) {
+    Grade[Grade["U"] = 1] = "U";
+    Grade[Grade["D"] = 2] = "D";
+    Grade[Grade["C"] = 3] = "C";
+    Grade[Grade["B"] = 4] = "B";
+    Grade[Grade["A"] = 5] = "A";
+})(Grade || (Grade = {}));
+console.log(Grade.U);
