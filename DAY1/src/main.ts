@@ -50,4 +50,3 @@ console.log(isActive);
 //Regex Type
 let reg:RegExp = /\w+/g
 console.log(reg);
-
